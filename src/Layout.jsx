@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { createPageUrl } from "@/utils";
-import { Sparkles, LayoutDashboard, MessageSquare, Briefcase, Palette, BarChart3, BookOpen } from "lucide-react";
+import { Sparkles, LayoutDashboard, MessageSquare, Briefcase, Palette, BarChart3, BookOpen, Wand2 } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -22,6 +22,11 @@ const navigationItems = [
     title: "Dashboard",
     url: createPageUrl("Dashboard"),
     icon: LayoutDashboard,
+  },
+  {
+    title: "Campaign Builder",
+    url: createPageUrl("CampaignBuilder"),
+    icon: Wand2,
   },
   {
     title: "Campaign Studio",
