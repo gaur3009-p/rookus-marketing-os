@@ -61,7 +61,6 @@ export default function StepBrief({ campaignData, updateCampaignData, brands, on
         </div>
       ) : (
         <div className="space-y-6">
-          {/* Brand Selection */}
           <div className="space-y-2">
             <Label htmlFor="brand">Select Brand *</Label>
             <Select
@@ -81,7 +80,6 @@ export default function StepBrief({ campaignData, updateCampaignData, brands, on
             </Select>
           </div>
 
-          {/* Campaign Name */}
           <div className="space-y-2">
             <Label htmlFor="name">Campaign Name *</Label>
             <Input
@@ -92,7 +90,6 @@ export default function StepBrief({ campaignData, updateCampaignData, brands, on
             />
           </div>
 
-          {/* Product/Service */}
           <div className="space-y-2">
             <Label htmlFor="product">Product/Service *</Label>
             <Textarea
@@ -104,7 +101,6 @@ export default function StepBrief({ campaignData, updateCampaignData, brands, on
             />
           </div>
 
-          {/* Objective */}
           <div className="space-y-2">
             <Label htmlFor="objective">Campaign Objective *</Label>
             <Select
@@ -124,7 +120,6 @@ export default function StepBrief({ campaignData, updateCampaignData, brands, on
             </Select>
           </div>
 
-          {/* Target Segment */}
           <div className="space-y-2">
             <Label htmlFor="target">Target Audience *</Label>
             <Textarea
@@ -136,7 +131,6 @@ export default function StepBrief({ campaignData, updateCampaignData, brands, on
             />
           </div>
 
-          {/* Platforms */}
           <div className="space-y-3">
             <Label>Platforms * (Select at least one)</Label>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -162,7 +156,6 @@ export default function StepBrief({ campaignData, updateCampaignData, brands, on
             </div>
           </div>
 
-          {/* Budget & Duration */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
               <Label htmlFor="budget">Budget ($)</Label>
@@ -189,7 +182,6 @@ export default function StepBrief({ campaignData, updateCampaignData, brands, on
         </div>
       )}
 
-      {/* Next Button */}
       <div className="flex justify-end pt-6 border-t">
         <Button
           size="lg"

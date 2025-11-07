@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowLeft, Rocket, CheckCircle2, Eye, Smartphone } from "lucide-react";
 
 export default function StepPreview({ 
@@ -35,7 +35,6 @@ export default function StepPreview({
         </div>
       </div>
 
-      {/* Campaign Summary */}
       <Card className="border-2 border-purple-200 bg-gradient-to-br from-purple-50 to-pink-50">
         <CardContent className="p-6">
           <div className="flex items-start justify-between mb-4">
@@ -74,7 +73,6 @@ export default function StepPreview({
         </CardContent>
       </Card>
 
-      {/* Platform Preview */}
       <Card>
         <CardContent className="p-6">
           <div className="flex items-center justify-between mb-6">
@@ -101,10 +99,8 @@ export default function StepPreview({
 
           <div className="flex justify-center">
             <div className={`${previewMode === "mobile" ? "max-w-sm" : "max-w-2xl"} w-full`}>
-              {/* Mobile Frame */}
               <div className="bg-gray-900 rounded-3xl p-3 shadow-2xl">
                 <div className="bg-white rounded-2xl overflow-hidden">
-                  {/* Platform Header */}
                   <div className="bg-gradient-to-r from-purple-600 to-pink-600 p-4 text-white">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
@@ -117,7 +113,6 @@ export default function StepPreview({
                     </div>
                   </div>
 
-                  {/* Poster */}
                   {getPlatformPoster() && (
                     <div className="aspect-square bg-gray-100">
                       <img 
@@ -128,7 +123,6 @@ export default function StepPreview({
                     </div>
                   )}
 
-                  {/* Post Content */}
                   <div className="p-4">
                     <div className="flex items-center gap-2 mb-3">
                       <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full" />
@@ -138,7 +132,6 @@ export default function StepPreview({
                       </div>
                     </div>
 
-                    {/* Caption */}
                     {getPlatformCreatives()[0] && (
                       <div className="mb-3">
                         <p className="text-sm text-gray-800 whitespace-pre-wrap">
@@ -147,7 +140,6 @@ export default function StepPreview({
                       </div>
                     )}
 
-                    {/* Engagement Buttons */}
                     <div className="flex items-center gap-4 py-2 border-t border-gray-200">
                       <button className="flex items-center gap-2 text-gray-600 hover:text-purple-600">
                         <span className="text-xl">❤️</span>
@@ -163,7 +155,6 @@ export default function StepPreview({
                       </button>
                     </div>
 
-                    {/* CTA Button */}
                     {campaignData.strategy?.cta && (
                       <Button className="w-full mt-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white">
                         {campaignData.strategy.cta}
@@ -177,7 +168,6 @@ export default function StepPreview({
         </CardContent>
       </Card>
 
-      {/* Assets Summary */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card className="border-2 border-blue-200 bg-blue-50">
           <CardContent className="p-6 text-center">
@@ -210,7 +200,6 @@ export default function StepPreview({
         </Card>
       </div>
 
-      {/* Strategy Recap */}
       <Card className="border-2 border-dashed border-gray-300">
         <CardContent className="p-6">
           <h3 className="font-bold text-gray-900 mb-4">Strategy Overview</h3>
@@ -241,7 +230,6 @@ export default function StepPreview({
         </CardContent>
       </Card>
 
-      {/* Navigation */}
       <div className="flex justify-between pt-6 border-t">
         <Button variant="outline" onClick={onBack} size="lg">
           <ArrowLeft className="w-5 h-5 mr-2" />

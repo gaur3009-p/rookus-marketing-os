@@ -27,7 +27,6 @@ export default function StepPosters({
     const posters = [];
 
     try {
-      // Generate posters for each platform
       const platformsToGenerate = campaignData.platforms?.slice(0, 3) || ["instagram"];
       
       for (let i = 0; i < platformsToGenerate.length; i++) {
@@ -61,7 +60,7 @@ Make it look like a real professional advertisement that would perform well on $
           file_url: result.url,
           generation_prompt: prompt,
           dimensions: platform === "instagram" ? "1080x1080" : "1200x630",
-          performance_rating: Math.floor(Math.random() * 3) + 7, // 7-10
+          performance_rating: Math.floor(Math.random() * 3) + 7,
         });
       }
 
@@ -210,7 +209,6 @@ Professional, modern marketing design.`;
             ))}
           </div>
 
-          {/* Generate More Button */}
           {generatedPosters.length > 0 && campaignData.platforms?.length > 3 && (
             <Card className="border-2 border-dashed border-gray-300 mt-6">
               <CardContent className="p-8 text-center">
@@ -233,7 +231,6 @@ Professional, modern marketing design.`;
         </div>
       )}
 
-      {/* Navigation */}
       <div className="flex justify-between pt-6 border-t">
         <Button variant="outline" onClick={onBack} size="lg">
           <ArrowLeft className="w-5 h-5 mr-2" />

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { base44 } from "@/api/base44Client";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
@@ -28,7 +28,6 @@ export default function CampaignBuilder() {
   const queryClient = useQueryClient();
   const [currentStep, setCurrentStep] = useState(1);
   const [campaignData, setCampaignData] = useState({
-    // Step 1 - Brief
     brand_id: "",
     name: "",
     product_service: "",
@@ -37,17 +36,9 @@ export default function CampaignBuilder() {
     budget: 0,
     duration_days: 30,
     platforms: [],
-    
-    // Step 2 - Strategy (AI generated)
     strategy: null,
-    
-    // Step 3 - Creatives (AI generated)
     creatives: [],
-    
-    // Step 4 - Posters (AI generated)
     posters: [],
-    
-    // Campaign ID after creation
     campaign_id: null,
   });
 
@@ -73,7 +64,6 @@ export default function CampaignBuilder() {
         status: "planning",
       });
       
-      // Save all creatives
       for (const creative of data.creatives) {
         await base44.entities.Creative.create({
           campaign_id: campaign.id,
@@ -81,7 +71,6 @@ export default function CampaignBuilder() {
         });
       }
       
-      // Save all posters
       for (const poster of data.posters) {
         await base44.entities.Asset.create({
           campaign_id: campaign.id,
@@ -91,7 +80,7 @@ export default function CampaignBuilder() {
       
       return campaign;
     },
-    onSuccess: (campaign) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['campaigns'] });
       navigate(createPageUrl("Campaigns"));
     },
@@ -130,7 +119,6 @@ export default function CampaignBuilder() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 p-6 md:p-8">
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
             <div>
@@ -144,7 +132,6 @@ export default function CampaignBuilder() {
             )}
           </div>
           
-          {/* Progress Bar */}
           <div className="space-y-2">
             <div className="flex items-center justify-between text-sm">
               <span className="font-medium text-gray-700">
@@ -156,7 +143,6 @@ export default function CampaignBuilder() {
           </div>
         </div>
 
-        {/* Steps Navigation */}
         <div className="mb-8">
           <div className="flex items-center justify-between">
             {STEPS.map((step, idx) => (
@@ -194,7 +180,6 @@ export default function CampaignBuilder() {
           </div>
         </div>
 
-        {/* Step Content */}
         <Card className="border-0 shadow-2xl mb-6">
           <CardContent className="p-8">
             {currentStep === 1 && (
@@ -248,7 +233,6 @@ export default function CampaignBuilder() {
           </CardContent>
         </Card>
 
-        {/* Bottom Actions */}
         {currentStep === STEPS.length && (
           <div className="flex justify-center">
             <Button

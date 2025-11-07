@@ -3,7 +3,7 @@ import { base44 } from "@/api/base44Client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, ArrowLeft, Sparkles, Lightbulb, Target, MessageSquare, Loader2 } from "lucide-react";
+import { ArrowRight, ArrowLeft, Sparkles, Lightbulb, Target, MessageSquare } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 
 export default function StepStrategy({ 
@@ -121,7 +121,6 @@ Return as JSON.`;
         </div>
       ) : generatedStrategy ? (
         <div className="space-y-6">
-          {/* Key Message */}
           <Card className="border-2 border-purple-200 bg-gradient-to-br from-purple-50 to-pink-50">
             <CardContent className="p-6">
               <div className="flex items-start gap-3">
@@ -136,7 +135,6 @@ Return as JSON.`;
             </CardContent>
           </Card>
 
-          {/* Tone & CTA */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card>
               <CardContent className="p-6">
@@ -155,7 +153,6 @@ Return as JSON.`;
             </Card>
           </div>
 
-          {/* Content Pillars */}
           <Card>
             <CardContent className="p-6">
               <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
@@ -177,7 +174,6 @@ Return as JSON.`;
             </CardContent>
           </Card>
 
-          {/* Platform Tactics */}
           {generatedStrategy.platform_tactics && (
             <Card>
               <CardContent className="p-6">
@@ -194,7 +190,6 @@ Return as JSON.`;
             </Card>
           )}
 
-          {/* Success Metrics */}
           {generatedStrategy.success_metrics && (
             <Card>
               <CardContent className="p-6">
@@ -210,7 +205,6 @@ Return as JSON.`;
             </Card>
           )}
 
-          {/* Custom Instructions */}
           <Card className="border-2 border-dashed border-gray-300">
             <CardContent className="p-6">
               <h3 className="font-semibold text-gray-900 mb-3">Want to refine the strategy?</h3>
@@ -234,7 +228,6 @@ Return as JSON.`;
         </div>
       ) : null}
 
-      {/* Navigation */}
       <div className="flex justify-between pt-6 border-t">
         <Button variant="outline" onClick={onBack} size="lg">
           <ArrowLeft className="w-5 h-5 mr-2" />

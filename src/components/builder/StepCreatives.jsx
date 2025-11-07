@@ -3,7 +3,7 @@ import { base44 } from "@/api/base44Client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, ArrowLeft, Sparkles, FileText, Copy, Loader2, RefreshCw } from "lucide-react";
+import { ArrowRight, ArrowLeft, Sparkles, FileText, Copy, RefreshCw } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 const CREATIVE_TYPES = [
@@ -265,7 +265,6 @@ Make them fresh, creative, and different from previous versions.`;
         </div>
       )}
 
-      {/* Navigation */}
       <div className="flex justify-between pt-6 border-t">
         <Button variant="outline" onClick={onBack} size="lg">
           <ArrowLeft className="w-5 h-5 mr-2" />
