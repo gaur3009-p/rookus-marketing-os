@@ -4,6 +4,7 @@ import Campaigns from './pages/Campaigns';
 import Library from './pages/Library';
 import Analytics from './pages/Analytics';
 import BrandSetup from './pages/BrandSetup';
+import CampaignBuilder from './pages/CampaignBuilder';
 import Layout from './Layout.jsx';
 
 
@@ -14,6 +15,7 @@ export const PAGES = {
     "Library": Library,
     "Analytics": Analytics,
     "BrandSetup": BrandSetup,
+    "CampaignBuilder": CampaignBuilder,
 }
 
 export const pagesConfig = {
