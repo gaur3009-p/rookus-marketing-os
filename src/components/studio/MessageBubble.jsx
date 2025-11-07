@@ -72,7 +72,7 @@ const FunctionDisplay = ({ toolCall }) => {
                                     try {
                                         return JSON.stringify(JSON.parse(toolCall.arguments_string), null, 2);
                                     } catch {
-                                        return toolCall.arguments_string;
+                                        return String(toolCall.arguments_string);
                                     }
                                 })()}
                             </pre>
@@ -83,7 +83,7 @@ const FunctionDisplay = ({ toolCall }) => {
                             <div className="text-xs text-slate-500 mb-1">Result:</div>
                             <pre className="bg-slate-50 rounded-md p-2 text-xs text-slate-600 whitespace-pre-wrap max-h-48 overflow-auto">
                                 {typeof parsedResults === 'object' ? 
-                                    JSON.stringify(parsedResults, null, 2) : parsedResults}
+                                    JSON.stringify(parsedResults, null, 2) : String(parsedResults)}
                             </pre>
                         </div>
                     )}
@@ -94,7 +94,15 @@ const FunctionDisplay = ({ toolCall }) => {
 };
 
 export default function MessageBubble({ message }) {
+    if (!message) return null;
+    
     const isUser = message.role === 'user';
+    const content = message.content;
+    
+    // Safely convert content to string if it's an object
+    const displayContent = typeof content === 'object' && content !== null
+        ? JSON.stringify(content)
+        : content;
     
     return (
         <div className={cn("flex gap-3", isUser ? "justify-end" : "justify-start")}>
@@ -104,13 +112,13 @@ export default function MessageBubble({ message }) {
                 </div>
             )}
             <div className={cn("max-w-[85%]", isUser && "flex flex-col items-end")}>
-                {message.content && (
+                {displayContent && (
                     <div className={cn(
                         "rounded-2xl px-5 py-3",
                         isUser ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg" : "bg-white border border-gray-200 shadow-sm"
                     )}>
                         {isUser ? (
-                            <p className="text-sm leading-relaxed">{message.content}</p>
+                            <p className="text-sm leading-relaxed">{displayContent}</p>
                         ) : (
                             <ReactMarkdown 
                                 className="text-sm prose prose-sm prose-slate max-w-none [&>*:first-child]:mt-0 [&>*:last-child]:mb-0"
@@ -156,13 +164,13 @@ export default function MessageBubble({ message }) {
                                     ),
                                 }}
                             >
-                                {message.content}
+                                {String(displayContent)}
                             </ReactMarkdown>
                         )}
                     </div>
                 )}
                 
-                {message.tool_calls?.length > 0 && (
+                {message.tool_calls && Array.isArray(message.tool_calls) && message.tool_calls.length > 0 && (
                     <div className="space-y-1">
                         {message.tool_calls.map((toolCall, idx) => (
                             <FunctionDisplay key={idx} toolCall={toolCall} />

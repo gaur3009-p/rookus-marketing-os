@@ -51,7 +51,6 @@ export default function Library() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-purple-50/30 p-6 md:p-8">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center shadow-lg">
@@ -64,7 +63,6 @@ export default function Library() {
           </div>
         </div>
 
-        {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <Card className="border-0 shadow-lg bg-gradient-to-br from-blue-500 to-blue-600 text-white">
             <CardContent className="p-6">
@@ -107,7 +105,6 @@ export default function Library() {
           </Card>
         </div>
 
-        {/* Filters */}
         <Card className="border-0 shadow-lg mb-6">
           <CardContent className="p-4">
             <div className="space-y-4">
@@ -139,7 +136,6 @@ export default function Library() {
           </CardContent>
         </Card>
 
-        {/* Creatives Grid */}
         {loadingCreatives ? (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[1, 2, 3, 4].map(i => (
@@ -161,11 +157,11 @@ export default function Library() {
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-2">
-                          <Badge className={`${typeColors[creative.type]} border-0 text-xs`}>
-                            {creative.type.replace(/_/g, ' ')}
+                          <Badge className={`${typeColors[creative.type] || 'bg-gray-100 text-gray-700'} border-0 text-xs`}>
+                            {creative.type?.replace(/_/g, ' ') || 'content'}
                           </Badge>
                           <Badge variant="outline" className="text-xs">
-                            {creative.platform}
+                            {creative.platform || 'universal'}
                           </Badge>
                         </div>
                         {campaign && (
@@ -175,7 +171,7 @@ export default function Library() {
                       <Button
                         size="sm"
                         variant="ghost"
-                        onClick={() => copyToClipboard(creative.content)}
+                        onClick={() => copyToClipboard(String(creative.content || ''))}
                         className="opacity-0 group-hover:opacity-100 transition-opacity"
                       >
                         <Copy className="w-4 h-4" />
@@ -185,16 +181,16 @@ export default function Library() {
                   <CardContent className="space-y-3">
                     <div className="bg-gradient-to-br from-gray-50 to-purple-50/30 rounded-lg p-4 border border-gray-100">
                       <p className="text-sm text-gray-800 whitespace-pre-wrap line-clamp-4">
-                        {creative.content}
+                        {String(creative.content || '')}
                       </p>
                     </div>
 
-                    {creative.hashtags && creative.hashtags.length > 0 && (
+                    {creative.hashtags && Array.isArray(creative.hashtags) && creative.hashtags.length > 0 && (
                       <div className="flex items-center gap-2 flex-wrap">
                         <Hash className="w-3 h-3 text-gray-400" />
                         {creative.hashtags.slice(0, 3).map((tag, idx) => (
                           <span key={idx} className="text-xs text-purple-600">
-                            #{tag}
+                            #{String(tag)}
                           </span>
                         ))}
                         {creative.hashtags.length > 3 && (
@@ -249,7 +245,6 @@ export default function Library() {
           </Card>
         )}
 
-        {/* Visual Assets Section */}
         {assets.length > 0 && (
           <div className="mt-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Visual Assets</h2>
@@ -260,7 +255,7 @@ export default function Library() {
                     {asset.file_url && (
                       <img 
                         src={asset.file_url} 
-                        alt={asset.type}
+                        alt={asset.type || 'asset'}
                         className="w-full h-full object-cover"
                       />
                     )}
@@ -276,10 +271,10 @@ export default function Library() {
                   </div>
                   <CardContent className="p-3">
                     <Badge className="text-xs" variant="outline">
-                      {asset.platform}
+                      {asset.platform || 'universal'}
                     </Badge>
                     <p className="text-xs text-gray-500 mt-1 truncate">
-                      {asset.type.replace(/_/g, ' ')}
+                      {asset.type?.replace(/_/g, ' ') || 'image'}
                     </p>
                   </CardContent>
                 </Card>
