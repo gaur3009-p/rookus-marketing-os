@@ -49,7 +49,7 @@ Create a detailed marketing strategy including:
 2. Tone and communication style
 3. Content pillars (3-4 main themes)
 4. Call-to-action recommendations
-5. Platform-specific tactics
+5. Platform-specific tactics (as simple text strings, not nested objects)
 
 Return as JSON.`;
 
@@ -95,6 +95,15 @@ Return as JSON.`;
     generateStrategy();
   };
 
+  // Helper function to safely render any value
+  const renderValue = (value) => {
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object' && value !== null) {
+      return JSON.stringify(value, null, 2);
+    }
+    return String(value);
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-3 mb-6">
@@ -128,7 +137,7 @@ Return as JSON.`;
                 <div>
                   <h3 className="font-bold text-gray-900 mb-2">Key Message</h3>
                   <p className="text-gray-700 text-lg leading-relaxed">
-                    "{generatedStrategy.key_message}"
+                    "{renderValue(generatedStrategy.key_message)}"
                   </p>
                 </div>
               </div>
@@ -140,7 +149,7 @@ Return as JSON.`;
               <CardContent className="p-6">
                 <h3 className="font-bold text-gray-900 mb-3">Communication Tone</h3>
                 <Badge className="bg-purple-100 text-purple-700 border-0 text-sm px-3 py-1">
-                  {generatedStrategy.tone}
+                  {renderValue(generatedStrategy.tone)}
                 </Badge>
               </CardContent>
             </Card>
@@ -148,7 +157,7 @@ Return as JSON.`;
             <Card>
               <CardContent className="p-6">
                 <h3 className="font-bold text-gray-900 mb-3">Call-to-Action</h3>
-                <p className="text-gray-700 font-medium">"{generatedStrategy.cta}"</p>
+                <p className="text-gray-700 font-medium">"{renderValue(generatedStrategy.cta)}"</p>
               </CardContent>
             </Card>
           </div>
@@ -166,7 +175,7 @@ Return as JSON.`;
                       <div className="w-8 h-8 bg-purple-600 text-white rounded-lg flex items-center justify-center font-bold flex-shrink-0">
                         {idx + 1}
                       </div>
-                      <p className="text-gray-700 text-sm">{pillar}</p>
+                      <p className="text-gray-700 text-sm">{renderValue(pillar)}</p>
                     </div>
                   </div>
                 ))}
@@ -174,15 +183,15 @@ Return as JSON.`;
             </CardContent>
           </Card>
 
-          {generatedStrategy.platform_tactics && (
+          {generatedStrategy.platform_tactics && Object.keys(generatedStrategy.platform_tactics).length > 0 && (
             <Card>
               <CardContent className="p-6">
                 <h3 className="font-bold text-gray-900 mb-4">Platform-Specific Tactics</h3>
                 <div className="space-y-3">
                   {Object.entries(generatedStrategy.platform_tactics).map(([platform, tactic]) => (
                     <div key={platform} className="bg-gray-50 rounded-lg p-4">
-                      <h4 className="font-semibold text-purple-600 mb-1 capitalize">{platform}</h4>
-                      <p className="text-sm text-gray-700">{tactic}</p>
+                      <h4 className="font-semibold text-purple-600 mb-1 capitalize">{String(platform)}</h4>
+                      <p className="text-sm text-gray-700 whitespace-pre-wrap">{renderValue(tactic)}</p>
                     </div>
                   ))}
                 </div>
@@ -190,14 +199,14 @@ Return as JSON.`;
             </Card>
           )}
 
-          {generatedStrategy.success_metrics && (
+          {generatedStrategy.success_metrics && Array.isArray(generatedStrategy.success_metrics) && (
             <Card>
               <CardContent className="p-6">
                 <h3 className="font-bold text-gray-900 mb-4">Success Metrics to Track</h3>
                 <div className="flex flex-wrap gap-2">
                   {generatedStrategy.success_metrics.map((metric, idx) => (
                     <Badge key={idx} variant="outline" className="text-sm px-3 py-1">
-                      {metric}
+                      {renderValue(metric)}
                     </Badge>
                   ))}
                 </div>
