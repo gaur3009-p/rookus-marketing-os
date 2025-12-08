@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Sparkles, TrendingUp, Target, Zap, ArrowRight, Briefcase, Palette, BarChart3 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import Scene3D from "../components/dashboard/Scene3D";
 
 export default function Dashboard() {
   const { data: campaigns = [], isLoading: loadingCampaigns } = useQuery({
@@ -69,68 +70,72 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Stats Grid */}
+        {/* Stats Grid with 3D Elements */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <Card className="border-0 shadow-lg bg-gradient-to-br from-purple-500 to-purple-600 text-white overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16" />
-            <CardHeader className="pb-3">
+          <Card className="border-0 shadow-2xl bg-gradient-to-br from-purple-500 to-purple-600 text-white overflow-visible relative group hover:scale-105 transition-transform duration-300">
+            <div className="absolute -top-10 -right-10 z-10">
+              <Scene3D color="#a855f7" />
+            </div>
+            <CardHeader className="pb-3 pt-6">
               <CardTitle className="text-sm font-medium text-purple-100">Total Campaigns</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex items-end justify-between">
                 <div>
-                  <p className="text-4xl font-bold">{campaigns.length}</p>
-                  <p className="text-sm text-purple-100 mt-1">{activeCampaigns.length} active</p>
+                  <p className="text-5xl font-bold tracking-tight">{campaigns.length}</p>
+                  <p className="text-sm text-purple-100 mt-2">{activeCampaigns.length} active</p>
                 </div>
-                <Briefcase className="w-10 h-10 opacity-30" />
               </div>
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-lg bg-gradient-to-br from-pink-500 to-pink-600 text-white overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16" />
-            <CardHeader className="pb-3">
+          <Card className="border-0 shadow-2xl bg-gradient-to-br from-pink-500 to-pink-600 text-white overflow-visible relative group hover:scale-105 transition-transform duration-300">
+            <div className="absolute -top-10 -right-10 z-10">
+              <Scene3D color="#ec4899" />
+            </div>
+            <CardHeader className="pb-3 pt-6">
               <CardTitle className="text-sm font-medium text-pink-100">Creatives Generated</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex items-end justify-between">
                 <div>
-                  <p className="text-4xl font-bold">{creatives.length}</p>
-                  <p className="text-sm text-pink-100 mt-1">AI-powered content</p>
+                  <p className="text-5xl font-bold tracking-tight">{creatives.length}</p>
+                  <p className="text-sm text-pink-100 mt-2">AI-powered content</p>
                 </div>
-                <Palette className="w-10 h-10 opacity-30" />
               </div>
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-lg bg-gradient-to-br from-blue-500 to-blue-600 text-white overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16" />
-            <CardHeader className="pb-3">
+          <Card className="border-0 shadow-2xl bg-gradient-to-br from-blue-500 to-blue-600 text-white overflow-visible relative group hover:scale-105 transition-transform duration-300">
+            <div className="absolute -top-10 -right-10 z-10">
+              <Scene3D color="#3b82f6" />
+            </div>
+            <CardHeader className="pb-3 pt-6">
               <CardTitle className="text-sm font-medium text-blue-100">Avg Performance</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex items-end justify-between">
                 <div>
-                  <p className="text-4xl font-bold">{avgEngagement.toFixed(0)}/100</p>
-                  <p className="text-sm text-blue-100 mt-1">Quality score</p>
+                  <p className="text-5xl font-bold tracking-tight">{avgEngagement.toFixed(0)}</p>
+                  <p className="text-sm text-blue-100 mt-2">Quality score</p>
                 </div>
-                <BarChart3 className="w-10 h-10 opacity-30" />
               </div>
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-lg bg-gradient-to-br from-orange-500 to-orange-600 text-white overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16" />
-            <CardHeader className="pb-3">
+          <Card className="border-0 shadow-2xl bg-gradient-to-br from-orange-500 to-orange-600 text-white overflow-visible relative group hover:scale-105 transition-transform duration-300">
+            <div className="absolute -top-10 -right-10 z-10">
+              <Scene3D color="#f97316" />
+            </div>
+            <CardHeader className="pb-3 pt-6">
               <CardTitle className="text-sm font-medium text-orange-100">Brands Managed</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex items-end justify-between">
                 <div>
-                  <p className="text-4xl font-bold">{brands.length}</p>
-                  <p className="text-sm text-orange-100 mt-1">With AI memory</p>
+                  <p className="text-5xl font-bold tracking-tight">{brands.length}</p>
+                  <p className="text-sm text-orange-100 mt-2">With AI memory</p>
                 </div>
-                <Target className="w-10 h-10 opacity-30" />
               </div>
             </CardContent>
           </Card>
