@@ -33,7 +33,7 @@ export default function Dashboard() {
   const recentCampaigns = campaigns.slice(0, 4);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-purple-50/30 to-pink-50/30 p-6 md:p-8">
+    <div className="min-h-screen bg-white p-6 md:p-8">
       <div className="max-w-7xl mx-auto">
         {/* Hero Section */}
         <div className="relative overflow-hidden bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl p-8 md:p-12 mb-8 shadow-2xl">
